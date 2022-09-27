@@ -9,8 +9,8 @@ import logo from './statics/logo.svg';
 import './App.css';
 
 function App() {
-  const pokemons = useSelector((state) => state.pokemons);
-  const loading = useSelector((state) => state.loading);
+  const pokemons = useSelector((state) => state.get('pokemons')).toJS();
+  const loading = useSelector((state) => state.get('loading'));
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -35,7 +35,7 @@ function App() {
       {loading ? (
         <Col offset={12}>
           <Spin spinning size='large' />
-        </Col> 
+        </Col>
       ) : (
         <PokemonList pokemons={pokemons} />
       )}
